@@ -6,13 +6,14 @@ const {
   updateEnrollmentById,
   deleteEnrollmentById,
 } = require("../controllers/user.enrollment");
+const isAuth = require("../middlewares/is-auth");
 
 const router = Router();
 
-router.post("/:userId", createEnrollment);
-router.get("/", getAllEnrollments);
-router.get("/:id", getEnrollmentById);
-router.put("/:id", updateEnrollmentById);
-router.delete("/:id", deleteEnrollmentById);
+router.post("/:userId", isAuth, createEnrollment);
+router.get("/", isAuth, getAllEnrollments);
+router.get("/:id", isAuth, getEnrollmentById);
+router.put("/:id", isAuth, updateEnrollmentById);
+router.delete("/:id", isAuth, deleteEnrollmentById);
 
 module.exports = router;
